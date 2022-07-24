@@ -7,7 +7,11 @@ wire:
 
 build: wire clean
 build:
-	GOARCH=amd64 GOOS=linux go build -tags=nomsgpack -o ./build/${BINARY_NAME}-linux ./cmd/main.go
+	GOARCH=amd64 GOOS=linux go build -tags=nomsgpack -o ./build/${BINARY_NAME}-linux ./main.go
+
+build_dev: wire clean
+build_dev:
+	go build -tags=nomsgpack -o ./build/${BINARY_NAME}-darwin ./main.go
 
 clean:
 	go clean
@@ -16,9 +20,14 @@ clean:
 run: export GO_ENV=local
 run: export KO_DATA_PATH=kodata
 run:
-	go ./build/${BINARY_NAME}-linux
+	go run ./build/${BINARY_NAME}-linux
 
-dev: build run
+run_dev: export GO_ENV=local
+run_dev: export KO_DATA_PATH=kodata
+run_dev:
+	./build/${BINARY_NAME}-darwin
+
+dev: build_dev run_dev
 
 # ko: build
 # ko: export KO_DATA_PATH=kodata
