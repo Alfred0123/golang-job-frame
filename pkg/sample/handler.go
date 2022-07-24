@@ -1,7 +1,11 @@
 package sample
 
+import (
+	domain "golang-job-frame/domain/sample"
+)
+
 type handler struct {
-	svc service
+	svc domain.SampleService
 }
 
 func (h *handler) Run () {
