@@ -1,20 +1,11 @@
 BINARY_NAME=golang-job-frame
 KO_DOCKER_REPO=gcr.io/typed-app-dev/typed-job-v2
 
-air_build: air_clean wire
-air_build:
-	GOARCH=amd64 GOOS=darwin go build -tags=nomsgpack -o ./tmp/main ./cmd/main.go
-air_clean:
-	go clean
-	-rm -r ./tmp
-
 # build: clean pre_build
 build: wire clean
 build:
 	GOARCH=amd64 GOOS=linux go build -tags=nomsgpack -o ./build/${BINARY_NAME}-linux ./cmd/main.go
 	zip ./build/function.zip ./build/${BINARY_NAME}-linux
-# GOARCH=amd64 GOOS=darwin go build -o ./build/${BINARY_NAME}-darwin main.go
-# GOARCH=amd64 GOOS=window go build -o ./build/${BINARY_NAME}-windows main.go
 
 run: export GO_ENV=local
 run: export PORT=8080
