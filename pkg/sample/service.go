@@ -12,6 +12,6 @@ func (s *service) GetSample (id int) (string) {
 	if(id > 10) {
 		return ""
 	} else {
-		return ""
+		return repo.GetSampleById(id)
 	}
 }

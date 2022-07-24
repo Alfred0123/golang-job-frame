@@ -13,11 +13,17 @@ import (
 
 // Injectors from wire.go:
 
-func Wire() *handler {
+func Wire() (*handler, error) {
 	sampleRepository := ProviderRepository()
 	sampleService := ProviderService(sampleRepository)
 	sampleHandler := ProviderHandler(sampleService)
-	return sampleHandler
+	return sampleHandler, nil
+}
+
+func WireService() (*service, error) {
+	sampleRepository := ProviderRepository()
+	sampleService := ProviderService(sampleRepository)
+	return sampleService, nil
 }
 
 // wire.go:

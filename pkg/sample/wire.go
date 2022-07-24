@@ -22,6 +22,12 @@ var ProviderSet = wire.NewSet(
 // 	wire.Bind(new(domain.SampleRepository), new(*repository)),
 // )
 
-func Wire() (*handler) {
-	panic(wire.Build(ProviderSet))
+func Wire() (*handler, error) {
+	wire.Build(ProviderSet)
+	return &handler{}, nil
+}
+
+func WireService() (*service, error) {
+	wire.Build(ProviderSet)
+	return &service{}, nil
 }
