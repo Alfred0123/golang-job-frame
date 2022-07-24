@@ -2,7 +2,7 @@ package main
 
 import (
 	config "golang-job-frame/configs"
-	sample "golang-job-frame/pkg/sample"
+	// sample "golang-job-frame/pkg/sample"
 	"log"
 )
 
@@ -12,5 +12,5 @@ func init() {
 }
 
 func main() {	
-	sample.Test()
+	// sample.Run()
 }
