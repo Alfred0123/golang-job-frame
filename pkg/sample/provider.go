@@ -6,37 +6,37 @@ import (
 )
 
 var (
-	hdl *handler
+	hdl *Handler
 	hdlOnce sync.Once
 	
-	svc *service
+	svc *Service
 	svcOnce sync.Once
 
-	repo *repository
+	repo *Repository
 	repoOnce sync.Once
 )
 
-func ProviderHandler(svc domain.SampleService) (*handler) {
+func ProviderHandler(svc domain.SampleService) (*Handler) {
 	hdlOnce.Do(func() {
-		hdl = &handler {
+		hdl = &Handler {
 			svc: svc,
 		}
 	})
 	return hdl
 }
 
-func ProviderService(repo domain.SampleRepository) (*service) {
+func ProviderService(repo domain.SampleRepository) (*Service) {
 	svcOnce.Do(func() {
-		svc = &service{
+		svc = &Service{
 			repo: repo,
 		}
 	})
 	return svc
 }
 
-func ProviderRepository() (*repository) {
+func ProviderRepository() (*Repository) {
 	repoOnce.Do(func() {
-		repo = &repository{}
+		repo = &Repository{}
 	})
 	return repo
 }

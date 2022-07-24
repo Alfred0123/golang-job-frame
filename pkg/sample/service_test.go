@@ -18,7 +18,7 @@ func (m *MockRepo) GetSampleById (id int) (string) {
 func TestGetSample (t *testing.T) {
 	// svc := service{ repo: repository{} }
 	mock := MockRepo{}
-	svc := service{
+	svc := Service{
 		repo: &mock,
 	}
 	

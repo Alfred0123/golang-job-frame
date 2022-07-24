@@ -1,8 +1,8 @@
 package sample
 
-type repository struct {}
+type Repository struct {}
 
-func (r *repository) GetSampleById (id int) (string) {
+func (r *Repository) GetSampleById (id int) (string) {
 	// println("GetSampleById!")
 	if (id != 1) {
 		panic("id not available")

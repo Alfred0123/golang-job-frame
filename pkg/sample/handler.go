@@ -4,11 +4,11 @@ import (
 	domain "golang-job-frame/domain/sample"
 )
 
-type handler struct {
+type Handler struct {
 	svc domain.SampleService
 }
 
-func (h *handler) Run () {
+func (h *Handler) Run () {
 	println("sample job start")
 	result := h.svc.GetSample(1)
 	println(result)
