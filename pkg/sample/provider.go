@@ -1,7 +1,7 @@
 package sample
 
 import (
-	domain "golang-job-frame/domain/sample"
+	// domain "golang-job-frame/domain/sample"
 	"sync"
 )
 
@@ -16,7 +16,7 @@ var (
 	repoOnce sync.Once
 )
 
-func ProviderHandler(svc domain.SampleService) (*handler) {
+func ProviderHandler(svc service) (*handler) {
 	hdlOnce.Do(func() {
 		hdl = &handler {
 			svc: svc,
@@ -25,7 +25,7 @@ func ProviderHandler(svc domain.SampleService) (*handler) {
 	return hdl
 }
 
-func ProviderService(repo domain.SampleRepository) (*service) {
+func ProviderService(repo repository) (*service) {
 	svcOnce.Do(func() {
 		svc = &service{
 			repo: repo,
