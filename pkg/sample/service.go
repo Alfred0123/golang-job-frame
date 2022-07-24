@@ -1,11 +1,7 @@
 package sample
 
-import (
-	domain "golang-job-frame/domain/sample"
-)
-
 type service struct {
-	repo domain.SampleRepository
+	repo repository
 }
 
 func (s *service) GetSample (id int) (string) {

@@ -8,28 +8,34 @@ package sample
 
 import (
 	"github.com/google/wire"
-	"golang-job-frame/domain/sample"
 )
 
 // Injectors from wire.go:
 
 func Wire() (*handler, error) {
-	sampleRepository := ProviderRepository()
-	sampleService := ProviderService(sampleRepository)
-	sampleHandler := ProviderHandler(sampleService)
+	sampleRepository := repository{}
+	sampleService := service{
+		repo: sampleRepository,
+	}
+	sampleHandler := &handler{
+		svc: sampleService,
+	}
 	return sampleHandler, nil
 }
 
 func WireService() (*service, error) {
-	sampleRepository := ProviderRepository()
-	sampleService := ProviderService(sampleRepository)
+	sampleRepository := repository{}
+	sampleService := &service{
+		repo: sampleRepository,
+	}
 	return sampleService, nil
+}
+
+func WireRepository() (*repository, error) {
+	sampleRepository := &repository{}
+	return sampleRepository, nil
 }
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(
-	ProviderHandler,
-	ProviderService,
-	ProviderRepository, wire.Bind(new(domain.SampleHandler), new(*handler)), wire.Bind(new(domain.SampleService), new(*service)), wire.Bind(new(domain.SampleRepository), new(*repository)),
-)
+var ProviderSet = wire.NewSet(wire.Struct(new(handler), "*"), wire.Struct(new(service), "*"), wire.Struct(new(repository)))
