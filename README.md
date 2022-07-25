@@ -4,4 +4,10 @@
 
 brew install make
 
-# go mod 에 의존성 기록
+## wire - 버전 기록 필요
+
+go install github.com/google/wire/cmd/wire
+
+# project 의존성 설치
+
+go get
